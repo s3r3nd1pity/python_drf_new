@@ -8,7 +8,7 @@ from apps.pizza_shop.models import PizzaShopModel
 class PizzaModel(BaseModel):
     class Meta:
         db_table = 'pizza'
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=20, blank=True)
     size = models.IntegerField()
     price= models.FloatField()
     pizza_shop=models.ForeignKey(PizzaShopModel, on_delete=models.CASCADE, related_name='pizzas')
