@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
+    'django_filters',
 
     # MY_APPS
     "apps.pizza",
