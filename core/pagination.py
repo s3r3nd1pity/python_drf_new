@@ -1,7 +1,6 @@
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
-
 class PagePagination(PageNumberPagination):
     page_size = 2
     max_page_size = 10
@@ -9,10 +8,9 @@ class PagePagination(PageNumberPagination):
 
     def get_paginated_response(self, data):
         return Response({
-            "total":self.page.paginator.count,
-            "total_pages":self.page.paginator.num_pages,
-            "prev":bool(self.get_previous_link()),
-            "next":bool(self.get_next_link()),
-            "data":data
+            'total_results': self.page.paginator.count,
+            'total_pages': self.page.paginator.num_pages,
+            'next': bool(self.get_next_link()),
+            'previous': bool(self.get_previous_link()),
+            'results': data,
         })
-

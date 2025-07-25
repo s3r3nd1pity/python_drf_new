@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
     # MY_APPS
     "apps.pizza",
-    "apps.pizza_shop"
+    "apps.pizza_shop",
 ]
 
 MIDDLEWARE = [

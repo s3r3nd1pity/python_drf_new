@@ -1,20 +1,23 @@
-from random import choices
-
-from django.db.models import QuerySet
-from django.http import QueryDict
-
-from rest_framework.exceptions import ValidationError
-
-from apps.pizza.models import PizzaModel, DaysChoices
-
 from django_filters import rest_framework as filters
+
+from apps.pizza.serializers import PizzaSerializer
+
+
 class PizzaFilter(filters.FilterSet):
-    lt=filters.NumberFilter(field_name='price',lookup_expr='lt')
-    range=filters.RangeFilter(field_name='size')#range_min=25&range_max=60
-    price_in=filters.BaseInFilter(field_name='price')#price_in=30,25,600
-    day=filters.ChoiceFilter(field_name='day',choices=DaysChoices.choices)
+    name_starts_with = filters.CharFilter(field_name='name', lookup_expr='startswith')
+    name_ends_with = filters.CharFilter(field_name='name', lookup_expr='endswith')
+    name_contains = filters.CharFilter(field_name='name', lookup_expr='contains')
+    day_starts_with = filters.CharFilter(field_name='day', lookup_expr='startswith')
+    day_ends_with = filters.CharFilter(field_name='day', lookup_expr='endswith')
+    day_contains = filters.CharFilter(field_name='day', lookup_expr='contains')
+    size_gt = filters.NumberFilter(field_name='size', lookup_expr='gt')
+    size_gte = filters.NumberFilter(field_name='size', lookup_expr='gte')
+    size_lt = filters.NumberFilter(field_name='size', lookup_expr='lt')
+    size_lte = filters.NumberFilter(field_name='size', lookup_expr='lte')
+    price_gt = filters.NumberFilter(field_name='price', lookup_expr='gt')
+    price_gte = filters.NumberFilter(field_name='price', lookup_expr='gte')
+    price_lt = filters.NumberFilter(field_name='price', lookup_expr='lt')
+    price_lte = filters.NumberFilter(field_name='price', lookup_expr='lte')
     order = filters.OrderingFilter(
-        fields=(
-            "id","name",("price", "price_for_url")#in params we write second one and this working as first one
-        )
-    )#order=name or order=-name
+        fields=PizzaSerializer.Meta.fields
+    )
