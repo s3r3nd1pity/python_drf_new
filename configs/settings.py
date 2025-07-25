@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")=="True"
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
-
+AUTH_USER_MODEL = "user.UserModel"
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,10 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django_filters',
+    'rest_framework_simplejwt',
 
     # MY_APPS
     "apps.pizza",
-    "apps.pizza_shop"
+    "apps.pizza_shop",
+    "apps.user",
+    "apps.auth"
 ]
 
 MIDDLEWARE = [

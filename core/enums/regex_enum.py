@@ -3,7 +3,7 @@ from enum import Enum
 
 class RegexEnum(Enum):
     NAME=(
-        r'^[A-Z][a-z]{,19}$',
+        r'^[A-Z][a-zA-Z ]{,29}$',
         'Only alpha characters are allowed.'
     )
 

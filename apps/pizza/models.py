@@ -1,6 +1,7 @@
 from django.db import models
 from django.core import validators as V
 
+from apps.pizza.managers import PizzaManager
 from core.enums.regex_enum import RegexEnum
 from core.models import BaseModel
 
@@ -19,13 +20,11 @@ class PizzaModel(BaseModel):
     class Meta:
         db_table = 'pizza'
         ordering = ('-id',)
-    # name = models.CharField(max_length=20, blank=True)
-    # size = models.IntegerField(default=1)
-    # price= models.FloatField()
-    # pizza_shop=models.ForeignKey(PizzaShopModel, on_delete=models.CASCADE, related_name='pizzas')
 
-    name = models.CharField(max_length=20, validators=[V.RegexValidator(regex=RegexEnum.NAME.pattern, message=RegexEnum.NAME.msg)])
+    name = models.CharField(max_length=30, validators=[V.RegexValidator(regex=RegexEnum.NAME.pattern, message=RegexEnum.NAME.msg)])
     size = models.IntegerField(validators=[V.MinValueValidator(1), V.MaxValueValidator(100)])
     price = models.FloatField()
-    day = models.CharField(max_length=9, choices=DaysChoices.choices)#wont change notime - can only choose from choices
+    day = models.CharField(max_length=9, choices=DaysChoices.choices)
     pizza_shop = models.ForeignKey(PizzaShopModel, on_delete=models.CASCADE, related_name='pizzas')
+
+    objects = PizzaManager()
