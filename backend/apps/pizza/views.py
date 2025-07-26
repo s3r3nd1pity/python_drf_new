@@ -1,5 +1,5 @@
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from apps.pizza.filter import PizzaFilter
 from apps.pizza.models import PizzaModel
@@ -10,7 +10,7 @@ class PizzaListCreateView(ListAPIView):
     serializer_class = PizzaSerializer
     queryset = PizzaModel.objects.all()
     filterset_class = PizzaFilter
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 
 class PizzaRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
