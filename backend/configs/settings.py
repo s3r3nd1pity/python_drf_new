@@ -31,6 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")=="True"
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
+
 AUTH_USER_MODEL = "user.UserModel"
 # Application definition
 
@@ -45,7 +46,8 @@ INSTALLED_APPS = [
     "apps.pizza",
     "apps.pizza_shop",
     "apps.user",
-    "apps.auth"
+    "apps.auth",
+    "core"
 ]
 
 MIDDLEWARE = [
