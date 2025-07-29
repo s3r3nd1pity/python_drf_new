@@ -6,6 +6,8 @@ from core.enums.regex_enum import RegexEnum
 from core.models import BaseModel
 
 from apps.pizza_shop.models import PizzaShopModel
+from core.services.service import upload_pizza_photo
+
 
 class DaysChoices(models.TextChoices):
     MONDAY = 'MONDAY'
@@ -26,5 +28,6 @@ class PizzaModel(BaseModel):
     price = models.FloatField()
     day = models.CharField(max_length=9, choices=DaysChoices.choices)
     pizza_shop = models.ForeignKey(PizzaShopModel, on_delete=models.CASCADE, related_name='pizzas')
+    photo=models.ImageField(upload_to=upload_pizza_photo, blank=True)
 
     objects = PizzaManager()
