@@ -16,6 +16,11 @@ class ActionToken(BlacklistMixin, Token ):
 class ActivateToken(ActionToken):
     token_type =ActionTokenEnum.ACTIVATE.token_type
     lifetime = ActionTokenEnum.ACTIVATE.lifetime
+
+class RecoveryToken(ActionToken):
+    token_type =ActionTokenEnum.RECOVER.token_type
+    lifetime = ActionTokenEnum.RECOVER.lifetime
+
 class JWTService:
     @staticmethod
     def create_token(user,token_class:ActionTokenClassType):
