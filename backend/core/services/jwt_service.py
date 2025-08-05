@@ -3,6 +3,7 @@ from rest_framework_simplejwt.tokens import BlacklistMixin, Token
 from typing import Type
 
 from rest_framework.generics import get_object_or_404
+
 from core.enums.action_token_enum import ActionTokenEnum
 from core.exceptions.jwt_exception import JWTException
 
@@ -16,6 +17,10 @@ class ActionToken(BlacklistMixin, Token ):
 class ActivateToken(ActionToken):
     token_type =ActionTokenEnum.ACTIVATE.token_type
     lifetime = ActionTokenEnum.ACTIVATE.lifetime
+
+class SocketToken(ActionToken):
+    token_type = ActionTokenEnum.SOCKET.token_type
+    lifetime = ActionTokenEnum.SOCKET.lifetime
 class JWTService:
     @staticmethod
     def create_token(user,token_class:ActionTokenClassType):
