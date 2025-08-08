@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     "apps.pizza_shop",
     "apps.user",
     "apps.auth",
-    "core"
+    "core",
+    "apps.chat"
 ]
 
 MIDDLEWARE = [
